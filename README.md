@@ -38,3 +38,23 @@ Here's an extended explanation of how the app works:
 - Automatic data preprocessing simplifies the workflow.
 - Identifies the best-performing model for quick decision-making.
 - Provides a separate ARIMA forecast for the full dataset, adding another layer of analysis.
+
+
+
+6. **How to Run:**
+
+Prerequisites: Ensure you have Python and the required libraries installed (pandas, scikit-learn, streamlit, statsmodels, xgboost). You can install them using:
+
+-Bash
+pip install pandas scikit-learn streamlit statsmodels xgboost
+Use code with caution.
+content_copy
+Open Your Terminal: Navigate to the directory where you've saved the app.py file.
+
+-Run the App: Type the following command and press Enter:
+
+-Bash
+streamlit run app.py
+Use code with caution.
+content_copy
+This will start the app, and a new browser window will open automatically. You should see the app's interface where you can upload your data and begin exploring sales predictions.
