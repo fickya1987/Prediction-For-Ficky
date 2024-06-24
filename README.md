@@ -21,7 +21,7 @@ This Streamlit application simplifies sales forecasting by leveraging machine le
 
 ## Get Started 🚀
 
-1. **Clone:** `git clone https://your-repo-url-here`
+1. **Clone:** `git clone https://https://github.com/satyam7010/Sales-Prediction-For-Each-Date/tree/main`
 2. **Install:** `pip install -r requirements.txt` 
 3. **Run:** `streamlit run app.py`
 
