@@ -29,3 +29,4 @@ This Streamlit application simplifies sales forecasting by leveraging machine le
 
 Your CSV file should be structured as follows:
 
+
