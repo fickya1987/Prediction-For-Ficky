@@ -28,4 +28,4 @@ This Streamlit application simplifies sales forecasting by leveraging machine le
 ## Data Format 📄
 
 Your CSV file should be structured as follows:
-Date Sales
+Date | Sales
