@@ -146,7 +146,7 @@ def prepare_data(file):
 
 # --- STREAMLIT APP ---
 
-st.title("Sales Prediction App")
+st.title("Petikemas Prediction App")
 
 uploaded_file = st.file_uploader("Upload your CSV file", type=["csv"])
 forecasting_period = st.slider("Select the forecasting period (days):", min_value=1, max_value=60, value=20)
@@ -208,12 +208,12 @@ if uploaded_file is not None:
         # Create comparison DataFrame
         comparison_df = pd.DataFrame({
             'Date': test_data['Date'],
-            'Actual Sales': y_test.values,
-            'Random Forest Predicted Sales': rf_pred,
-            'Gradient Boosting Predicted Sales': gb_pred,
-            'XGBoost Predicted Sales': xgboost_pred,
-            'SVR Predicted Sales': svr_pred,
-            'Stack Predicted Sales': stack_pred,
+            'Actual petikemas': y_test.values,
+            'Random Forest Predicted petikemas': rf_pred,
+            'Gradient Boosting Predicted petikemas': gb_pred,
+            'XGBoost Predicted petikemas': xgboost_pred,
+            'SVR Predicted petikemas': svr_pred,
+            'Stack Predicted petikemas': stack_pred,
         })
 
         # Parse mse_list and calculate the average of the top 5 MSE values
@@ -267,7 +267,7 @@ if uploaded_file is not None:
         comparison_df['Percentage Deviation'] = (comparison_df['Closest Model Error'] / comparison_df['Actual Sales']) * 100
 
         # Display comparison dataframe
-        st.subheader("Actual vs. Predicted Sales Comparison (Non-ARIMA Models)")
+        st.subheader("Actual vs. Predicted petikemas Comparison (Non-ARIMA Models)")
         st.dataframe(comparison_df)
 
         # Create ARIMA DataFrame
@@ -275,7 +275,7 @@ if uploaded_file is not None:
             'Date': next_month_index,
             'ARIMA Predicted Sales': rounded_sales_df_arima['ARIMA'],
         })
-        st.subheader("ARIMA Predicted Sales")
+        st.subheader("ARIMA Predicted Petikemas")
         st.dataframe(arima_df)
 
         st.subheader("Model Mean Squared Error (MSE)")
