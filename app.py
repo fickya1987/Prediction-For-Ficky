@@ -117,7 +117,7 @@ def stack_prediction(X_train, X_test, y_train, y_test):
     return stack_mse, stack_pred
 
 def arima_prediction(df, forecasting_period):
-    model = ARIMA(df['Petikemas'], order=(5, 1, 2))
+    model = ARIMA(df['Sales'], order=(5, 1, 2))
     results = model.fit()
     next_month_forecast = results.get_forecast(steps=forecasting_period)
     next_month_index = pd.date_range(start=df.index[-1] + timedelta(days=1), periods=forecasting_period)
@@ -146,7 +146,7 @@ def prepare_data(file):
 
 # --- STREAMLIT APP ---
 
-st.title("Petikemas Prediction App")
+st.title("Sales Prediction App")
 
 uploaded_file = st.file_uploader("Upload your CSV file", type=["csv"])
 forecasting_period = st.slider("Select the forecasting period (days):", min_value=1, max_value=60, value=20)
@@ -164,10 +164,10 @@ if uploaded_file is not None:
         test_data = df[df['Date'] >= last_month_start].copy()
         
         # Prepare features (X) and target (y)
-        X_train = train_data.drop(['Petikemas', 'Date'], axis=1)
-        y_train = train_data['Petikemas']
-        X_test = test_data.drop(['Petikemas', 'Date'], axis=1)
-        y_test = test_data['Petikemas']
+        X_train = train_data.drop(['Sales', 'Date'], axis=1)
+        y_train = train_data['Sales']
+        X_test = test_data.drop(['Sales', 'Date'], axis=1)
+        y_test = test_data['Sales']
 
         # Convert categorical columns to numeric using one-hot encoding if any
         X_train = pd.get_dummies(X_train)
@@ -208,12 +208,12 @@ if uploaded_file is not None:
         # Create comparison DataFrame
         comparison_df = pd.DataFrame({
             'Date': test_data['Date'],
-            'Actual petikemas': y_test.values,
-            'Random Forest Predicted petikemas': rf_pred,
-            'Gradient Boosting Predicted petikemas': gb_pred,
-            'XGBoost Predicted petikemas': xgboost_pred,
-            'SVR Predicted petikemas': svr_pred,
-            'Stack Predicted petikemas': stack_pred,
+            'Actual Sales': y_test.values,
+            'Random Forest Predicted Sales': rf_pred,
+            'Gradient Boosting Predicted Sales': gb_pred,
+            'XGBoost Predicted Sales': xgboost_pred,
+            'SVR Predicted Sales': svr_pred,
+            'Stack Predicted Sales': stack_pred,
         })
 
         # Parse mse_list and calculate the average of the top 5 MSE values
@@ -267,7 +267,7 @@ if uploaded_file is not None:
         comparison_df['Percentage Deviation'] = (comparison_df['Closest Model Error'] / comparison_df['Actual Sales']) * 100
 
         # Display comparison dataframe
-        st.subheader("Actual vs. Predicted petikemas Comparison (Non-ARIMA Models)")
+        st.subheader("Actual vs. Predicted Sales Comparison (Non-ARIMA Models)")
         st.dataframe(comparison_df)
 
         # Create ARIMA DataFrame
@@ -275,7 +275,7 @@ if uploaded_file is not None:
             'Date': next_month_index,
             'ARIMA Predicted Sales': rounded_sales_df_arima['ARIMA'],
         })
-        st.subheader("ARIMA Predicted Petikemas")
+        st.subheader("ARIMA Predicted Sales")
         st.dataframe(arima_df)
 
         st.subheader("Model Mean Squared Error (MSE)")
