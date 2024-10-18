@@ -117,7 +117,7 @@ def stack_prediction(X_train, X_test, y_train, y_test):
     return stack_mse, stack_pred
 
 def arima_prediction(df, forecasting_period):
-    model = ARIMA(df['Sales'], order=(5, 1, 2))
+    model = ARIMA(df['Petikemas'], order=(5, 1, 2))
     results = model.fit()
     next_month_forecast = results.get_forecast(steps=forecasting_period)
     next_month_index = pd.date_range(start=df.index[-1] + timedelta(days=1), periods=forecasting_period)
