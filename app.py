@@ -164,10 +164,10 @@ if uploaded_file is not None:
         test_data = df[df['Date'] >= last_month_start].copy()
         
         # Prepare features (X) and target (y)
-        X_train = train_data.drop(['Sales', 'Date'], axis=1)
-        y_train = train_data['Sales']
-        X_test = test_data.drop(['Sales', 'Date'], axis=1)
-        y_test = test_data['Sales']
+        X_train = train_data.drop(['Petikemas', 'Date'], axis=1)
+        y_train = train_data['Petikemas']
+        X_test = test_data.drop(['Petikemas', 'Date'], axis=1)
+        y_test = test_data['Petikemas']
 
         # Convert categorical columns to numeric using one-hot encoding if any
         X_train = pd.get_dummies(X_train)
